@@ -38,7 +38,7 @@ exports.index = (req, res) => {
 };
 
 exports.savePreset = (req, res) => {
-  const presetSave = new Preset({
+  const presetToSave = new Preset({
     _id: req.body.id,
     name: req.body.name,
     default: req.body.default,
@@ -47,7 +47,7 @@ exports.savePreset = (req, res) => {
   });
 
   Preset.findOneAndUpdate(
-    { name: req.body.name }, presetSave, { new: true }, (errUpdate, presetSaved) => {
+    { name: req.body.name }, presetToSave, { new: true }, (errUpdate, presetSaved) => {
       if (errUpdate) { logger.log('error', errUpdate); res.render('error'); }
       res.render('index.pug', { title: consts.indexTitle, preset: presetSaved });
     },
