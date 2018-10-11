@@ -1,0 +1,34 @@
+extends layout
+
+block content
+  h1= title
+    br 
+    br
+    form(action='/savePreset' method='POST')
+      div.input
+        input(type='hidden', name='id' value=(undefined===preset ? '' : preset._id ))
+        span.label Preset
+          input(type='text', disabled=false, name='name' value=(undefined===preset ? '' : preset.name ))
+        span.label Default
+          input(type="checkbox", disabled=false, name="completed", checked=(preset.default))
+        p Schalter
+        span.label Lampe
+          input(type="checkbox", name="lamp", checked=(preset.switch.lamp))
+          br
+        span.label TV
+          input(type="checkbox", name="tv", checked=(preset.switch.tv))
+          br
+        span.label Gitarre
+          input(type="checkbox", name="guitar", checked=(preset.switch.guitar))
+          br
+        p PC 
+        span.label Jack
+          input(type="checkbox", name="jackd", checked=(preset.pc.jackd))
+          br
+        span.label Compton
+          input(type="checkbox", name="compton", checked=(preset.pc.compton))
+          br
+        span.label Ardour
+          input(type="checkbox", name="ardour", checked=(preset.pc.ardour))
+          br
+        input(type='submit', value='Save')

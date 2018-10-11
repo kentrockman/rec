@@ -1,0 +1,14 @@
+{
+  "uri" : "mongodb://127.0.0.1:27017/rec",
+  "options" : {
+    "useNewUrlParser": "true",
+    "autoIndex": false,
+    "reconnectTries": "Number.MAX_VALUE",
+    "reconnectInterval": 500,
+    "poolSize": 10,
+    "bufferMaxEntries": 0,
+    "connectTimeoutMS": 10000,
+    "socketTimeoutMS": 45000,
+    "family": 4
+  }
+}
