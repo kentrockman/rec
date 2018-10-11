@@ -47,7 +47,7 @@ exports.savePreset = (req, res) => {
   });
 
   Preset.findOneAndUpdate(
-    { name: req.body.name }, presetToSave, { new: true }, (errUpdate, presetSaved) => {
+    { _id: req.body.id }, presetToSave, { new: true }, (errUpdate, presetSaved) => {
       if (errUpdate) { logger.log('error', errUpdate); res.render('error'); }
       res.render('index.pug', { title: consts.indexTitle, preset: presetSaved });
     },
