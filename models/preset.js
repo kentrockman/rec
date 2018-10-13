@@ -17,8 +17,7 @@ const presetSchema = new mongoose.Schema({
   pc: {
     jackd: Boolean,
     compton: Boolean,
-    ardour: Boolean
-    ,
+    ardour: Boolean,
   },
 });
 

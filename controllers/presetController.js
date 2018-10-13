@@ -20,7 +20,7 @@ exports.index = (req, res) => {
             name: presetName,
             default: true,
             switch: {
-              lamp: false, tv: false, kitchen: false, guitar: 1,
+              lamp: false, tv: false, kitchen: false, guitar: true,
             },
             pc: {
               jackd: true, compton: false, ardour: true,
