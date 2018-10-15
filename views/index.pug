@@ -9,26 +9,26 @@ block content
         input(type='hidden', name='id' value=(undefined===preset ? '' : preset._id ))
         span.label Preset
           input(type='text', disabled=false, name='name' value=(undefined===preset ? '' : preset.name ))
-        span.label Default
-          input(type="checkbox", disabled=false, name="completed", checked=(preset.default))
+        span.label Active
+          input(type="checkbox", disabled=false, name="active", checked=(preset.active))
         p Schalter
         span.label Lampe
-          input(type="checkbox", name="lamp", checked=(preset.switch.lamp))
+          input(type="checkbox", name="lamp", checked=(preset.ha.switch.lamp))
           br
         span.label TV
-          input(type="checkbox", name="tv", checked=(preset.switch.tv))
+          input(type="checkbox", name="tv", checked=(preset.ha.switch.tv))
           br
         span.label Gitarre
-          input(type="checkbox", name="guitar", checked=(preset.switch.guitar))
+          input(type="checkbox", name="guitar", checked=(preset.ha.switch.guitar))
           br
         p PC 
         span.label Jack
-          input(type="checkbox", name="jackd", checked=(preset.pc.jackd))
+          input(type="checkbox", name="jackd", checked=(preset.ssh.apps.jackd))
           br
         span.label Compton
-          input(type="checkbox", name="compton", checked=(preset.pc.compton))
+          input(type="checkbox", name="compton", checked=(preset.ssh.apps.compton))
           br
         span.label Ardour
-          input(type="checkbox", name="ardour", checked=(preset.pc.ardour))
+          input(type="checkbox", name="ardour", checked=(preset.ssh.apps.ardour))
           br
         input(type='submit', value='Save')

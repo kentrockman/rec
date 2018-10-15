@@ -3,9 +3,9 @@ const Preset = require('../models/preset');
 const consts = require('../config/constants');
 
 exports.index = (req, res) => {
-  // Default preset available?
-  Preset.findOne({ default: 1 }, (errFindDefault, presetLoaded) => {
-    if (errFindDefault) { logger.log('warn', errFindDefault); res.render('error'); }
+  // Active preset available?
+  Preset.findOne({ active: true }, (errFindActive, presetLoaded) => {
+    if (errFindActive) { logger.log('error', errFindActive); res.render('error'); }
 
     if (presetLoaded === null) {
       const presetName = 'Default';
@@ -15,18 +15,33 @@ exports.index = (req, res) => {
         if (errCount) { logger.log('error', errCount); res.render('error'); }
 
         if (count === 0) {
-          // Save and render preset
+          // Save and render default preset
           const preset = new Preset({
             name: presetName,
-            default: true,
-            switch: {
-              lamp: false, tv: false, kitchen: false, guitar: true,
+            active: true,
+            ha: {
+              switch: {
+                lamp: false, tv: false, kitchen: false, guitar: true,
+              },
+              settings: {
+                host: '127.0.0.1',
+                user: 'user',
+                pw: 'pass',
+              },
             },
-            pc: {
-              jackd: true, compton: false, ardour: true,
+            ssh: {
+              apps: {
+                jackd: true, compton: false, ardour: true,
+              },
+              settings: {
+                host: '127.0.0.1',
+                user: 'user',
+                publickey: 'pk123',
+              },
             },
           });
           preset.save((errSave, presetSaved) => {
+            if (errSave) { logger.log('error', errCount); res.render('error'); }
             res.render('index.pug', { title: consts.indexTitle, preset: presetSaved });
           });
         }
@@ -41,9 +56,12 @@ exports.savePreset = (req, res) => {
   const presetToSave = new Preset({
     _id: req.body.id,
     name: req.body.name,
-    default: req.body.default,
-    switch: { lamp: !!req.body.lamp, guitar: !!req.body.guitar, tv: !!req.body.tv },
-    pc: { jackd: !!req.body.jackd, compton: !!req.body.compton, ardour: !!req.body.ardour },
+    active: !!req.body.active,
+    ha: { switch: { lamp: !!req.body.lamp, guitar: !!req.body.guitar, tv: !!req.body.tv } },
+    ssh: {
+      apps:
+      { jackd: !!req.body.jackd, compton: !!req.body.compton, ardour: !!req.body.ardour },
+    },
   });
 
   Preset.findOneAndUpdate(
