@@ -1,34 +1,49 @@
 extends layout
 
 block content
-  h1= title
-    br 
-    br
+    h1= title
     form(action='/savePreset' method='POST')
-      div.input
+      div(class="form-input-preset-header") Common
+      ul(class="form-input-preset")
         input(type='hidden', name='id' value=(undefined===preset ? '' : preset._id ))
-        span.label Preset
-          input(type='text', disabled=false, name='name' value=(undefined===preset ? '' : preset.name ))
-        span.label Active
-          input(type="checkbox", disabled=false, name="active", checked=(preset.active))
-        p Schalter
-        span.label Lampe
+
+        li 
+          label Preset
+          input(type='text', name='name' value=(undefined===preset ? '' : preset.name ))
+
+        li
+          label Active
+          input(type="checkbox", name="active", checked=(preset.active))
+
+
+      div(class="form-input-preset-header") Home Assistant
+      ul(class="form-input-preset")
+        li 
+          label Lampe
           input(type="checkbox", name="lamp", checked=(preset.ha.switch.lamp))
           br
-        span.label TV
+
+        li 
+          label TV
           input(type="checkbox", name="tv", checked=(preset.ha.switch.tv))
-          br
-        span.label Gitarre
+
+        li
+          label Gitarre
           input(type="checkbox", name="guitar", checked=(preset.ha.switch.guitar))
-          br
-        p PC 
-        span.label Jack
+
+
+
+
+      div(class="form-input-preset-header") SSH
+      ul(class="form-input-preset")
+        li
+          label Jack
           input(type="checkbox", name="jackd", checked=(preset.ssh.apps.jackd))
-          br
-        span.label Compton
+        li
+          label Compton
           input(type="checkbox", name="compton", checked=(preset.ssh.apps.compton))
-          br
-        span.label Ardour
+        li
+          label Ardour
           input(type="checkbox", name="ardour", checked=(preset.ssh.apps.ardour))
-          br
-        input(type='submit', value='Save')
+      br
+      input(class="form-input-preset-button" type='submit', value='Save')

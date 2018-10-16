@@ -1,8 +1,45 @@
 body {
-  padding: 10px;
-  font: 12px Helvetica, Arial, sans-serif;
+  padding:0px;
+  font: 13px "Lucida Sans Unicode", "Lucida Grande", sans-serif;
 }
 
-a {
-  color: #00B7FF;
+.form-input-preset {
+  margin:5px;
+  max-width: 500px;
+  font: 13px "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+}
+
+.form-input-preset input[type=text]{
+  padding:0px 0px 0px 2px;
+}
+
+
+.form-input-preset li {
+  display: block;
+  list-style: none;
+  padding: 5px 0px 5px 0px;
+}
+
+.form-input-preset label {
+  display:inline;
+  font-weight: bold;
+  float: left;
+  width: 100px;
+}
+
+.form-input-preset-button {
+  background: #4B99AD;
+  border: none;
+  color: #fff;
+  padding: 5px 5px 5px 5px;
+}
+
+.form-input-preset-header {
+  max-width: 500px;
+  font: 12px "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+  font-weight: bold;
+  background: #EEEEEE;
+  padding: 5px 15px 5px 15px;
+  border: none;
+  color: #4B99AD;
 }
