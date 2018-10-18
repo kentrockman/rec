@@ -19,6 +19,10 @@ exports.index = (req, res) => {
           const preset = new Preset({
             name: presetName,
             active: true,
+            test: {
+              hallo: true,
+              spencer: false,
+            },
             ha: {
               switch: {
                 lamp: false, tv: false, kitchen: false, guitar: true,
@@ -47,6 +51,7 @@ exports.index = (req, res) => {
         }
       });
     } else {
+      logger.log('warn', presetLoaded.test);
       res.render('index.pug', { title: consts.indexTitle, preset: presetLoaded });
     }
   });

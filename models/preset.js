@@ -7,6 +7,10 @@ const presetSchema = new mongoose.Schema({
     index: true,
     unique: true,
   },
+  test: {
+    type: Map,
+    of: Boolean,
+  },
   active: Boolean,
   ha: {
     switch: {
