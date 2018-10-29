@@ -7,17 +7,11 @@ const presetSchema = new mongoose.Schema({
     index: true,
     unique: true,
   },
-  test: {
-    type: Map,
-    of: Boolean,
-  },
   active: Boolean,
   ha: {
     switch: {
-      lamp: Boolean,
-      guitar: Boolean,
-      tv: Boolean,
-      kitchen: Boolean,
+      type: Map,
+      of: Boolean,
     },
     settings: {
       host: String,
@@ -27,14 +21,14 @@ const presetSchema = new mongoose.Schema({
   },
   ssh: {
     apps: {
-      jackd: Boolean,
-      compton: Boolean,
-      ardour: Boolean,
+      type: Map,
+      of: Boolean,
     },
     settings: {
       host: String,
+      port: Number,
       user: String,
-      publickey: String,
+      pw: String,
     },
   },
 });

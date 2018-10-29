@@ -8,22 +8,27 @@
   },
   "dependencies": {
     "app-root-path": "^2.1.0",
+    "body-parser": "^1.18.3",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
-    "express": "~4.16.0",
+    "ejs": "^2.6.1",
+    "express": "^4.16.4",
+    "homeassistant": "^0.1.6",
     "http-errors": "~1.6.2",
-    "mongoose": "^5.3.1",
-    "morgan": "~1.9.0",
-    "pug": "2.0.0-beta11",
+    "jquery": "^3.3.1",
+    "mongoose": "^5.3.7",
+    "morgan": "^1.9.1",
+    "morgan-body": "^2.4.5",
+    "ssh2": "^0.6.1",
     "winston": "^3.1.0"
   },
   "description": "Start recording session",
   "main": "app.js",
   "devDependencies": {
-    "eslint": "^5.4.0",
+    "eslint": "^5.8.0",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.14.0",
-    "nodemon": "^1.18.3"
+    "nodemon": "^1.18.5"
   },
   "author": "Chris",
   "license": "ISC"

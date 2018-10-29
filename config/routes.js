@@ -1,4 +1,4 @@
-const presetController = require('../controllers/presetController');
+const presetController = require('../controller/preset-controller');
 
 module.exports = (app) => {
   app.get('/', presetController.index);

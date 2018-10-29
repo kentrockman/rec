@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script src="/jquery/jquery.min.js"></script>
+
+    <script type="text/javascript">
+      function newListElement(divList, nameList){
+        $(`#${divList} ul`).append(`<li><input type='text' class='input-field' name=${nameList} value=''> <input type='checkbox' name=${nameList} ></li>`);
+      }
+
+      function toggleSettings(toggleDiv){
+        $(`#${toggleDiv}`).toggle();
+      }
+    </script>
+
+  </head>
+  <body>
+    <% function insertList(map, fieldname, divList){ %>
+    <% let i = 0; %>
+    <div id="<%=divList%>">
+      <ul>
+        <% map.forEach( (value, key) => { %>
+        <li>
+          <input type="text" class='input-field' name=<%= fieldname %> value=<%= key %>>
+          <input type="checkbox" name=<%= fieldname %> <%= value ? "checked" : "" %>>
+          <% i++ %>
+        </li>
+        <% } ); %>
+      </ul>
+    </div>
+    <% }; %>
+    <h3><%= title %></h3>
+
+    <div class="form-input-preset">
+      <div class="form-input-preset-header">Common</div>
+      <form action="/savePreset" method="post">
+        <label for="name"><span>Name <span class="required">*</span></span><input type="text" class="input-field" name="name" value="<%=preset.name%>" /></label>
+        <label for="active"><span>Active <span class="required">*</span></span><input type="checkbox"  name="active" <%= preset.active ? "checked" : "" %>/></label>
+        <input type="hidden" name="id" value=<%=preset._id%>>
+
+
+        <div class="form-input-preset-header">Home Assistant <input type="button" class="btn-settings" value="Show Settings" onClick="toggleSettings('ha-settings')">   </div>
+        <div id="ha-settings" class="settings">
+          <label for="haHost"><span>Host<span class="required">*</span></span><input type="text" class="input-field" name="haHost" value="<%=preset.ha.settings.host%>" /></label>
+          <label for="haUser"><span>User<span class="required">*</span></span><input type="text" class="input-field" name="haUser" value="<%=preset.ha.settings.user%>" /></label>
+          <label for="haPw"><span>Password<span class="required">*</span></span><input type="text" class="input-field" name="haPw" value="<%=preset.ha.settings.pw%>" /></label>
+        </div>
+
+        <%= insertList(preset.ha.switch, 'haList', 'divHaList'); %>
+        <br />
+        <input type="button" class="btn-fancy" value="Add switch" onclick="newListElement('divHaList', 'haList')" />
+        <br />
+
+        <div class="form-input-preset-header">SSH<input type="button" class="btn-settings" value="Show Settings" onClick="toggleSettings('ssh-settings')">   </div>
+        <div id="ssh-settings" class="settings">
+          <label for="sshHost"><span>Host<span class="required">*</span></span><input type="text" class="input-field" name="sshHost" value="<%=preset.ssh.settings.host%>" /></label>
+          <label for="sshUser"><span>User<span class="required">*</span></span><input type="text" class="input-field" name="sshUser" value="<%=preset.ssh.settings.user%>" /></label>
+          <label for="sshPrivateKey"><span>Private Key<span class="required">*</span></span><input type="text" class="input-field" name="sshPrivateKey" value="<%=preset.ssh.settings.privateKey%>" /></label>
+        </div>
+
+        <br />
+        <%= insertList(preset.ssh.apps, 'sshList', 'divSshList'); %>
+        <br />
+
+        <input type="button" class="btn-fancy" value="Add application" onclick="newListElement('divSshList', 'sshList')" />
+
+
+        <div class="form-input-preset-header"></div>
+        <label><input type="submit" class="btn-fancy" value="Save" /></label>
+      </form>
+    </div>
+
+
+
+  </body>
+</html>
